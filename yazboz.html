@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/jquery-3.6.0.min.js"> </script>
+		<link rel="stylesheet" href="yazbozCss.css">
+		<link rel="stylesheet" href="yazbozTable.html">
+
+	</head>
+	<body>
+		<div class="firstDiv">
+
+			<p>
+				<h3>Oyuncu İsimlerini Giriniz<h3>
+				<label>İsim:</label> 
+				<input type="text" class="isimm" ıd="isim" name="Nisim" value="" >
+				<button type="reset" ıd="btn1" class="bttn1">Ekle</button>
+			</p>
+
+
+				<div class="radioUp">
+ 				 <label>
+					<input type="radio" name="oyunGrup1" value="0" ıd="oyuncu1" ><label id="o1">Oyuncu-1</label>
+				</label><br><br><br><br>
+ 				</div>
+
+				<div class="radioLeft">
+ 				<label>
+					<input type="radio" name="oyunGrup1" value="0" ıd="oyuncu4" ><label id="o4">Oyuncu-4</label> <br>
+				</label>
+ 				</div>
+
+				<div class="radioRight">
+ 				<label>
+					<input type="radio" name="oyunGrup1" value="0" ıd="oyuncu2" ><label id="o2">Oyuncu-2</label><br>
+					<img src="1.png" alt="Paris" width="40" height="50">
+				</label>
+ 				</div>
+
+ 				<div><label>
+					<input type="radio" name="oyunGrup1" value="0" ıd="oyuncu3" ><label id="o3">Oyuncu-3</label>
+				</label><br>
+ 				</div>
+
+			<label for="checkCount">Oyun Sayısı Giriniz:</label>
+			  <select name="checkCountN" id="checkCount1" class="checkCountC">
+			    <option value="5">5</option>
+			    <option value="7">7</option>
+			    <option value="9">9</option>
+
+			  </select>
+			  <br>
+
+			<button type="submit" ıd="btn2" class="btn">Oyuna Başla</button>
+
+		</div>
+
+
+
+		<div ıd="secondPage" class="tableCss" >
+
+			<table class="center" border="1"> <!-- </table> -->
+			<thead>
+			 <th class="tableColor">Tur Sayısı</th>
+			 <th class="th1" style='background-color:#28c6cd' > </th>
+			 <th class="th2" style='background-color:#28cd39' > </th>
+			 <th class="th3" style='background-color:#cd288e' > </th> 
+			 <th class="th4" style='background-color:#dff706' > </th>
+			 <th class="tableColor">Bitti</th> 
+			</thead>
+
+			  <tbody class="tBody"> 
+
+			  <p id="demo"></p>
+
+	</div>
+
+
+	 <script>
+		$(".tableCss").hide();
+		
+	 	count=1;
+
+		  $(document).ready(function(){
+		   $(".bttn1").click(function(){
+		   	if (count <= 4) {
+		   		chCount="#o"+count
+		   		$(chCount).text($(".isimm").val())
+		   	}
+		   	 var bCount = ".th"+count
+		     $(bCount).append($(".isimm").val()) ;
+		     count++;
+		   	 console.log($(".isimm").val(""));
+		     
+		   });
+
+		   $(".btn").click(function(){
+		     $(".firstDiv").hide();
+		     $(".tableCss").show();
+
+		      var x = document.getElementById("checkCount1").value;
+
+		     
+		      tableCount(x);
+		  	 });
+
+		});
+		
+		function tableCount(xy){
+
+		var satirsayisi = xy;
+		var sutunsayisi = 6;
+		elCount=1;
+
+		// document.write("<table class='center' border='1'>");
+
+		for(var i=0;i<satirsayisi;i++)
+		{
+			$(".tBody").append("<tr> ");
+		    
+		   
+			    for(var j=1;j<sutunsayisi;j++)
+			    {
+			        if (j==1) {
+				$(".tBody").append("<td class='tableColor' ıd="+elCount+">" +elCount+".El" + "</td>");
+			        	elCount++;
+		
+			        }
+
+			        if (j==5) {
+				$(".tBody").append("<td class='tableColor' ıd="+i+j+">" + "<input ıd='tCheck"+i+"' type='checkbox' value='"+i+"' onclick='if(this.checked){myFunction("+i+")}'>" + "</td>");
+			        	
+			        }
+
+			        else {
+				$(".tBody").append("<td ıd="+i+j+">" + "<input class='tLabel"+i+j+"' id='iLabel"+i+j+"' type='text' name='"+i+j+"'>" + "</td>");
+			        	
+			        }
+			    }
+		   	
+			$(".tBody").append("</tr>");
+		    
+		}
+			$(".tBody").append("<tr><td style='background-color:#FF0000' class='total'>Toplam</td> <td style='background-color:#28c6cd' id='total1' class='total'></td> <td style='background-color:#28cd39' class='total' id='total2'></td> <td style='background-color:#cd288e' class='total' id='total3'></td> <td style='background-color:#dff706' class='total' id='total4'></td> <td class='tableColor'></td> </tr>");
+			$(".tBody").append("</tbody></table>");
+		
+		}
+
+		
+		var oy="oyuncu"; var oyuncu1=0; var oyuncu2=0; var oyuncu3=0; var oyuncu4=0;
+		function myFunction(checkCount) 
+		{	
+
+ 			// var lName = document.getElementsByName("N");
+ 			if (checkCount==0) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel0";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+
+					}
+				  oyuncu1+=Number($('#iLabel01').val());
+				  oyuncu2+=Number($('#iLabel02').val());
+				  oyuncu3+=Number($('#iLabel03').val());
+				  oyuncu4+=Number($('#iLabel04').val());
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+				}
+
+			if (checkCount==1) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel1";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+
+
+					}
+				  oyuncu1+=Number($('#iLabel11').val());
+				  oyuncu2+=Number($('#iLabel12').val());
+				  oyuncu3+=Number($('#iLabel13').val());
+				  oyuncu4+=Number($('#iLabel14').val());
+
+
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+				}
+
+			
+			if (checkCount==2) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel2";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+
+					}
+				  oyuncu1+=Number($('#iLabel21').val());
+				  oyuncu2+=Number($('#iLabel22').val());
+				  oyuncu3+=Number($('#iLabel23').val());
+				  oyuncu4+=Number($('#iLabel24').val());
+
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+
+			}
+
+			if (checkCount==3) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel3";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+
+					}
+				  oyuncu1+=Number($('#iLabel31').val());
+				  oyuncu2+=Number($('#iLabel32').val());
+				  oyuncu3+=Number($('#iLabel33').val());
+				  oyuncu4+=Number($('#iLabel34').val());
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+
+			}
+			if (checkCount==4) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel4";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+
+					}
+				  oyuncu1+=Number($('#iLabel41').val());
+				  oyuncu2+=Number($('#iLabel42').val());
+				  oyuncu3+=Number($('#iLabel43').val());
+				  oyuncu4+=Number($('#iLabel44').val());
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+
+
+			}
+			if (checkCount==5) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel5";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+
+					}
+				  oyuncu1+=Number($('#iLabel51').val());
+				  oyuncu2+=Number($('#iLabel52').val());
+				  oyuncu3+=Number($('#iLabel53').val());
+				  oyuncu4+=Number($('#iLabel54').val());
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+			}
+			if (checkCount==6) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel6";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+
+					}
+				  oyuncu1+=Number($('#iLabel61').val());
+				  oyuncu2+=Number($('#iLabel62').val());
+				  oyuncu3+=Number($('#iLabel63').val());
+				  oyuncu4+=Number($('#iLabel64').val());
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+			}
+			if (checkCount==7) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel7";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+
+					}
+				  oyuncu1+=Number($('#iLabel71').val());
+				  oyuncu2+=Number($('#iLabel72').val());
+				  oyuncu3+=Number($('#iLabel73').val());
+				  oyuncu4+=Number($('#iLabel74').val());
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+			}
+			if (checkCount==8) {
+				const skorArray = [];
+					for (var i = 1; i <= 4; i++) {
+						
+						lCount="#iLabel8";
+						llCount=lCount+i;
+						skorArray.push(llCount)
+						$(llCount).prop('disabled', true);
+						
+
+					}
+				  oyuncu1+=Number($('#iLabel81').val());
+				  oyuncu2+=Number($('#iLabel82').val());
+				  oyuncu3+=Number($('#iLabel83').val());
+				  oyuncu4+=Number($('#iLabel84').val());
+				  document.getElementById("total1").innerHTML = oyuncu1;
+				  document.getElementById("total2").innerHTML = oyuncu2;
+				  document.getElementById("total3").innerHTML = oyuncu3;
+				  document.getElementById("total4").innerHTML = oyuncu4;
+			}
+
+		}
+
+
+
+
+
+	 </script>
+
+	</body>
+</html>
+
+
+
+
